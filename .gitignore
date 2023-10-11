@@ -1,1 +1,21 @@
 node_modules
+
+mainChildren.forEach((item)=>{
+    console.log(item.children[0].textContent)
+    console.log(Array.from(item.children[1].children).map(item=>{
+        console.log()
+        return {
+            image:item.children[0].attributes.src.nodeValue.split("/").pop(),
+            title:item.children[0].attributes.title.nodeValue,
+            info:item.children[2].textContent,
+            links:Array.from(item.children[3].children[0].children).map(item=>{
+            let len = item.attributes.href.textContent.split("/").length
+            return {
+                link:item.attributes.href.textContent.split("/")[len-2],
+                name:item.textContent
+            }
+        })
+        }
+    }))
+    
+})
